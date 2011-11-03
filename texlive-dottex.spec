@@ -1,3 +1,9 @@
+# revision 15878
+# category Package
+# catalog-ctan /macros/latex/contrib/dottex
+# catalog-date 2007-08-21 11:49:34 +0200
+# catalog-license gpl
+# catalog-version 0.6
 Name:		texlive-dottex
 Version:	0.6
 Release:	1
@@ -50,6 +56,7 @@ intermediate process before a second LaTeX run.
 #- source
 %doc %{_texmfdistdir}/source/latex/dottex/dottex.dtx
 %doc %{_texmfdistdir}/source/latex/dottex/dottex.ins
+%doc %{_tlpkgobjdir}/*.tlpobj
 
 #-----------------------------------------------------------------------
 %prep
@@ -60,3 +67,5 @@ intermediate process before a second LaTeX run.
 %install
 mkdir -p %{buildroot}%{_texmfdistdir}
 cp -fpar tex doc source %{buildroot}%{_texmfdistdir}
+mkdir -p %{buildroot}%{_tlpkgobjdir}
+cp -fpa tlpkg/tlpobj/*.tlpobj %{buildroot}%{_tlpkgobjdir}
