@@ -56,3 +56,17 @@ intermediate process before a second LaTeX run.
 %install
 mkdir -p %{buildroot}%{_texmfdistdir}
 cp -fpar tex doc source %{buildroot}%{_texmfdistdir}
+
+
+%changelog
+* Wed Jan 04 2012 Paulo Andrade <pcpa@mandriva.com.br> 0.6-2
++ Revision: 751067
+- Rebuild to reduce used resources
+
+* Sat Nov 05 2011 Paulo Andrade <pcpa@mandriva.com.br> 0.6-1
++ Revision: 718251
+- texlive-dottex
+- texlive-dottex
+- texlive-dottex
+- texlive-dottex
+
