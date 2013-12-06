@@ -6,7 +6,7 @@
 # catalog-version 0.6
 Name:		texlive-dottex
 Version:	0.6
-Release:	4
+Release:	5
 Summary:	Use dot code in LaTeX
 Group:		Publishing
 URL:		http://www.ctan.org/tex-archive/macros/latex/contrib/dottex
