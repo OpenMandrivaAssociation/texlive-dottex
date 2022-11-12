@@ -1,19 +1,13 @@
-# revision 15878
-# category Package
-# catalog-ctan /macros/latex/contrib/dottex
-# catalog-date 2007-08-21 11:49:34 +0200
-# catalog-license gpl
-# catalog-version 0.6
 Name:		texlive-dottex
-Version:	0.6
-Release:	11
+Version:	15878
+Release:	1
 Summary:	Use dot code in LaTeX
 Group:		Publishing
 URL:		http://www.ctan.org/tex-archive/macros/latex/contrib/dottex
 License:	GPL
-Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/dottex.tar.xz
-Source1:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/dottex.doc.tar.xz
-Source2:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/dottex.source.tar.xz
+Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/dottex.r%{version}.tar.xz
+Source1:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/dottex.doc.r%{version}.tar.xz
+Source2:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/dottex.source.r%{version}.tar.xz
 BuildArch:	noarch
 BuildRequires:	texlive-tlpkg
 Requires(pre):	texlive-tlpkg
@@ -29,12 +23,12 @@ otherwise, the conversion must be done manually as an
 intermediate process before a second LaTeX run.
 
 %post
-    %{_sbindir}/texlive.post
+%{_sbindir}/texlive.post
 
 %postun
-    if [ $1 -eq 0 ]; then
+if [ $1 -eq 0 ]; then
 	%{_sbindir}/texlive.post
-    fi
+fi
 
 #-----------------------------------------------------------------------
 %files
@@ -49,24 +43,11 @@ intermediate process before a second LaTeX run.
 
 #-----------------------------------------------------------------------
 %prep
-%setup -c -a0 -a1 -a2
+%setup -c -a1 -a2
+%autopatch -p1
 
 %build
 
 %install
 mkdir -p %{buildroot}%{_texmfdistdir}
 cp -fpar tex doc source %{buildroot}%{_texmfdistdir}
-
-
-%changelog
-* Wed Jan 04 2012 Paulo Andrade <pcpa@mandriva.com.br> 0.6-2
-+ Revision: 751067
-- Rebuild to reduce used resources
-
-* Sat Nov 05 2011 Paulo Andrade <pcpa@mandriva.com.br> 0.6-1
-+ Revision: 718251
-- texlive-dottex
-- texlive-dottex
-- texlive-dottex
-- texlive-dottex
-
