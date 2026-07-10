@@ -1,53 +1,28 @@
-Name:		texlive-dottex
-Version:	15878
-Release:	2
+%global tl_name dottex
+%global tl_revision 15878
+
+Name:		texlive-%{tl_name}
+Epoch:		1
+Version:	0.6
+Release:	%{tl_revision}.1
 Summary:	Use dot code in LaTeX
 Group:		Publishing
 URL:		https://www.ctan.org/tex-archive/macros/latex/contrib/dottex
-License:	GPL
-Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/dottex.r%{version}.tar.xz
-Source1:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/dottex.doc.r%{version}.tar.xz
-Source2:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/dottex.source.r%{version}.tar.xz
+License:	gpl
+Source0:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/dottex.r%{tl_revision}.tar.xz
+Source1:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/dottex.doc.r%{tl_revision}.tar.xz
+Source2:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/dottex.source.r%{tl_revision}.tar.xz
 BuildArch:	noarch
+BuildSystem:	texlive
 BuildRequires:	texlive-tlpkg
-Requires(pre):	texlive-tlpkg
-Requires(post):	texlive-kpathsea
+%texlive_base_requires
+Provides:	texlive(%{tl_name}) = %{tl_revision}
 
 %description
-The dottex package allows you to encapsulate 'dot' and 'neato'
-files in your document (dot and neato are both part of
-graphviz; dot creates directed graphs, neato undirected
-graphs). If you have shell-escape enabled, the package will
-arrange for your files to be processed at LaTeX time;
-otherwise, the conversion must be done manually as an
+The dottex package allows you to encapsulate 'dot' and 'neato' files in
+your document (dot and neato are both part of graphviz; dot creates
+directed graphs, neato undirected graphs). If you have shell-escape
+enabled, the package will arrange for your files to be processed at
+LaTeX time; otherwise, the conversion must be done manually as an
 intermediate process before a second LaTeX run.
 
-%post
-%{_sbindir}/texlive.post
-
-%postun
-if [ $1 -eq 0 ]; then
-	%{_sbindir}/texlive.post
-fi
-
-#-----------------------------------------------------------------------
-%files
-%{_texmfdistdir}/tex/latex/dottex/dottex.sty
-%doc %{_texmfdistdir}/doc/latex/dottex/README
-%doc %{_texmfdistdir}/doc/latex/dottex/dottex.pdf
-%doc %{_texmfdistdir}/doc/latex/dottex/example.tex
-%doc %{_texmfdistdir}/doc/latex/dottex/gpl.txt
-#- source
-%doc %{_texmfdistdir}/source/latex/dottex/dottex.dtx
-%doc %{_texmfdistdir}/source/latex/dottex/dottex.ins
-
-#-----------------------------------------------------------------------
-%prep
-%setup -c -a1 -a2
-%autopatch -p1
-
-%build
-
-%install
-mkdir -p %{buildroot}%{_texmfdistdir}
-cp -fpar tex doc source %{buildroot}%{_texmfdistdir}
